@@ -25,7 +25,11 @@ router.get('/', function (req, res, next) {
             if(err){
               console.log(err)
             }else{
-              paging.list = data2
+              if(data2.length === 0){
+                res.redirect(`/?page=${(paging.currentPage-1) || 1}`)
+              }else{
+                paging.list = data2
+              }
               res.render('index', {username, paging});
             }
           })
@@ -42,7 +46,25 @@ router.get('/login', (req, res, next) => {
   res.render('login');
 });
 router.get('/write', (req, res, next) => {
-  res.render('write');
+  const {id,page} = req.query
+  let articleInfo = {}
+  if(id){
+    model.connect(db=>{
+      db.collection('articles').findOne({createAt:parseInt(id)},(err,result)=>{
+        if(err){
+          console.log('查询失败')
+          console.log(err)
+        }else{
+          articleInfo = result
+          articleInfo.page = page
+          res.render('write',{articleInfo});
+        }
+      })
+    })
+  }else{
+    res.render('write');
+  }
+
 });
 
 module.exports = router;

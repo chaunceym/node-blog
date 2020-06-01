@@ -8,15 +8,17 @@
 <h1>写文章</h1>
 <div>
     <form action="/article/new" method="post">
+        <input type="hidden" name="createAt" value="<%=articleInfo.createAt%>">
+        <input type="hidden" name="page" value="<%=articleInfo.page%>">
         <label for="">
            标题 <br>
-            <input type="text" name="title">
+            <input type="text" name="title" value="<%=articleInfo.title%>">
         </label>
         <br>
         <label for="">
             内容
             <br>
-            <textarea name="content" id="content" cols="80" rows="50"></textarea>
+            <textarea name="content" id="content" cols="80" rows="50"><%- articleInfo.content%></textarea>
         </label>
         <br>
         <button>提交</button>
