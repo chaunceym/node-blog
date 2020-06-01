@@ -25,7 +25,7 @@ app.use(session({
   secret: 'chauncey',
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 1000000*60*5 }
+  cookie: { maxAge: 10000000000000000*60*5 }
 }))
 app.get('*',(req,res,next)=>{
   const username = req.session.username

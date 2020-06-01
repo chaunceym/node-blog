@@ -30,14 +30,14 @@
         <td><%=article.author%></td>
         <td><%=article.title%></td>
         <td><%=new Date(article.createAt+ 8*3600*1000).toJSON().substr(0,19).replace('T',' ')%></td>
-        <td><a href="">编辑</a>|<a href="">删除</a></td>
+        <td><a href="/article/edit">编辑</a>|<a href="/article/delete?id=<%=article.createAt%>&page=<%=paging.currentPage%>">删除</a></td>
       </tr>
       <%})%>
       </tbody>
     </table>
     <div>
-      <% for (let i = 0; i < paging.total; i++) {%>
-      <a href="/?page=<%=i+1%>"><%=i+1%></a>
+      <% for (let i = 1; i <= paging.total; i++) {%>
+      <a href="/?page=<%=i%>"><%=i%></a>
       <%}%>
     </div>
   </body>
