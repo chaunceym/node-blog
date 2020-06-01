@@ -4,8 +4,6 @@ const model = require('./../model')
 
 router.post('/new', (req, res, next) => {
   const {title, content, createAt, page} = req.body
-  console.log(req.body)
-  console.log(typeof createAt)
   if(createAt){
     model.connect(db=>{
       db.collection('articles').updateOne({createAt:parseInt(createAt)},{$set:{title,content}},(err,result)=>{

@@ -28,7 +28,7 @@
       <tr>
         <td><%=index+1%></td>
         <td><%=article.author%></td>
-        <td><%=article.title%></td>
+        <td><a href="/detail?id=<%=article.createAt%>"><%=article.title%></a></td>
         <td><%=new Date(article.createAt+ 8*3600*1000).toJSON().substr(0,19).replace('T',' ')%></td>
         <td><a href="/write?id=<%=article.createAt%>&page=<%=paging.currentPage%>">编辑</a>
           |<a href="/article/delete?id=<%=article.createAt%>&page=<%=paging.currentPage%>">删除</a>

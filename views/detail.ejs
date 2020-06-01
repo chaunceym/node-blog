@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>详情页</title>
+</head>
+<body>
+    <div>
+        <h1><%=result.title%></h1>
+        <p><span>作者: <%=result.author%></span></p>
+        <p><span>创建时间: <%=new Date(result.createAt+ 8*3600*1000).toJSON().substr(0,19).replace('T',' ')%></span></p>
+        <p>
+            <%- result.content%>
+        </p>
+    </div>
+</body>
+</html>

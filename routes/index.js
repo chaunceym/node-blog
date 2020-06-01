@@ -22,12 +22,12 @@ router.get('/', function (req, res, next) {
           .limit(pageSize)
           .skip((paging.currentPage - 1) * pageSize)
           .toArray((err, data2) => {
-            if(err){
+            if (err) {
               console.log(err)
-            }else{
-              if(data2.length === 0){
-                res.redirect(`/?page=${(paging.currentPage-1) || 1}`)
-              }else{
+            } else {
+              if (data2.length === 0) {
+                res.redirect(`/?page=${(paging.currentPage - 1) || 1}`)
+              } else {
                 paging.list = data2
               }
               res.render('index', {username, paging});
@@ -46,25 +46,32 @@ router.get('/login', (req, res, next) => {
   res.render('login');
 });
 router.get('/write', (req, res, next) => {
-  const {id,page} = req.query
+  const {id, page} = req.query
   let articleInfo = {}
-  if(id){
-    model.connect(db=>{
-      db.collection('articles').findOne({createAt:parseInt(id)},(err,result)=>{
-        if(err){
+  if (id) {
+    model.connect(db => {
+      db.collection('articles').findOne({createAt: parseInt(id)}, (err, result) => {
+        if (err) {
           console.log('查询失败')
           console.log(err)
-        }else{
+        } else {
           articleInfo = result
           articleInfo.page = page
-          res.render('write',{articleInfo});
+          res.render('write', {articleInfo});
         }
       })
     })
-  }else{
+  } else {
     res.render('write');
   }
-
 });
+router.get('/detail', (req, res, next) => {
+  const {id} = req.query
+  model.connect(db => {
+    db.collection('articles').findOne({createAt: parseInt(id)}, (err, result) => {
+      res.render('detail',{result})
+    })
+  })
+})
 
 module.exports = router;
