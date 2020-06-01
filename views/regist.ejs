@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+  </head>
+  <body>
+    <div>
+      <form action="/users/regist" method="post">
+        <label>
+        用户名 <input type="text" name="username" id="" value="" placeholder="请输入用户名">
+        </label>
+        <br>
+        <label>
+        密码 <input type="password" name="password" id="" value="" placeholder="请输入密码">
+        </label>
+        <br>
+        <label>
+        确认密码 <input type="password" name="password2" id="" value="" placeholder="请确认密码">
+        </label>
+        <br>
+        <button type="submit">注册</button>
+      </form>
+      <div>
+        已有账号，<a href="/login">请登录</a>
+      </div>
+    </div>
+  </body>
+</html>
