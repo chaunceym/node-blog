@@ -1,11 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>首页</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>首页</h1>
+    <div>
+      <a href="/">LOGO</a>|
+      <span><%=username%></span>|
+      <span><a href="/write">写文章</a></span>|
+      <span><a href="/users/logout">退出</a></span>
+    </div>
+  <div>
+    <table>
+      <thead>
+      <tr>
+        <td>序号</td>
+        <td>作者</td>
+        <td>文章标题</td>
+        <td>时间</td>
+        <td>操作</td>
+      </tr>
+      </thead>
+      <tbody>
+      <%paging.list.map((article,index)=>{%>
+      <tr>
+        <td><%=index+1%></td>
+        <td><%=article.author%></td>
+        <td><%=article.title%></td>
+        <td><%=new Date(article.createAt+ 8*3600*1000).toJSON().substr(0,19).replace('T',' ')%></td>
+        <td><a href="">编辑</a>|<a href="">删除</a></td>
+      </tr>
+      <%})%>
+      </tbody>
+    </table>
+    <div>
+      <% for (let i = 0; i < paging.total; i++) {%>
+      <a href="/?page=<%=i+1%>"><%=i+1%></a>
+      <%}%>
+    </div>
   </body>
 </html>

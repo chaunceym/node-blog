@@ -3,9 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+const session = require('express-session')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const articleRouter = require('./routes/article');
 
 var app = express();
 
@@ -19,8 +20,24 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// session 配置
+app.use(session({
+  secret: 'chauncey',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 1000000*60*5 }
+}))
+app.get('*',(req,res,next)=>{
+  const username = req.session.username
+  const path = req.path
+  if(path !== '/login' && path !== '/regist'){
+    if(!username) res.redirect('/login')
+  }
+  next()
+})
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/article', articleRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
