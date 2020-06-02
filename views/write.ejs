@@ -2,23 +2,23 @@
 <html>
 <head>
     <title>写文章</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 <body>
 <h1>写文章</h1>
 <div>
     <form action="/article/new" method="post">
-        <input type="hidden" name="createAt" value="<%=articleInfo.createAt%>">
-        <input type="hidden" name="page" value="<%=articleInfo.page%>">
+        <input type="hidden" name="createAt" value="<%= articleInfo.createAt %>">
+        <input type="hidden" name="page" value="<%= articleInfo.page %>">
         <label for="">
-           标题 <br>
-            <input type="text" name="title" value="<%=articleInfo.title%>">
+            标题 <br>
+            <input type="text" name="title" value="<%= articleInfo.title %>">
         </label>
         <br>
         <label for="">
             内容
             <br>
-            <textarea name="content" id="content" cols="80" rows="50"><%- articleInfo.content%></textarea>
+            <textarea name="content" id="content" cols="80" rows="50"><%- articleInfo.content %></textarea>
         </label>
         <br>
         <button>提交</button>
@@ -26,7 +26,7 @@
 </div>
 <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <script>
-  CKEDITOR.replace( 'content' );
+  CKEDITOR.replace('content');
 </script>
 </body>
 </html>

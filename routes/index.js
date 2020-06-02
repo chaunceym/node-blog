@@ -62,14 +62,14 @@ router.get('/write', (req, res, next) => {
       })
     })
   } else {
-    res.render('write');
+    res.render('write',{articleInfo});
   }
 });
 router.get('/detail', (req, res, next) => {
   const {id} = req.query
   model.connect(db => {
     db.collection('articles').findOne({createAt: parseInt(id)}, (err, result) => {
-      res.render('detail',{result})
+      res.render('detail', {result})
     })
   })
 })
